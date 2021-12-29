@@ -2493,7 +2493,7 @@ __webpack_require__.r(__webpack_exports__);
       var uri = 'http://localhost:8000/api/posts/store';
       this.axios.post(uri, this.post).then(function (response) {
         _this.$router.push({
-          name: 'posts'
+          name: 'dashboard'
         });
       })["catch"](function (error) {
         _this.validation = error.response.data.data;
@@ -2583,7 +2583,7 @@ __webpack_require__.r(__webpack_exports__);
       var uri = "http://localhost:8000/api/posts/update/".concat(this.$route.params.id);
       this.axios.post(uri, this.post).then(function (response) {
         _this2.$router.push({
-          name: 'posts'
+          name: 'dashboard'
         });
       })["catch"](function (error) {
         _this2.validation = error.response.data.data;

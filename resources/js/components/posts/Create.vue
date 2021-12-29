@@ -64,7 +64,7 @@
                 this.axios.post(uri, this.post)
                     .then((response) => {
                         this.$router.push({
-                            name: 'posts'
+                            name: 'dashboard'
                         });
                     }).catch(error => {
                     this.validation = error.response.data.data;
