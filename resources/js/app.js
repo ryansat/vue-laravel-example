@@ -15,10 +15,12 @@ Vue.use(VueAxios, axios);
 import IndexComponent from './components/posts/Index.vue';
 import CreateComponent from './components/posts/Create.vue';
 import EditComponent from './components/posts/Edit.vue';
+import LoginComponent from './components/auth/Login.vue';
+import RegisterComponent from './components/auth/Register.vue';
 
 const routes = [
     {
-        name: 'posts',
+        name: 'dashboard',
         path: '/',
         component: IndexComponent
     },
@@ -31,6 +33,16 @@ const routes = [
         name: 'edit',
         path: '/edit/:id',
         component: EditComponent
+    },
+    {
+        name: 'login',
+        path: '/login',
+        component: LoginComponent
+    },
+    {
+        name: 'register',
+        path: '/register',
+        component: RegisterComponent
     }
 ];
 
