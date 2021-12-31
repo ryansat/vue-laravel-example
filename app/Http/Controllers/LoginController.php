@@ -26,14 +26,13 @@ class LoginController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
+        $user = User::where('email', $request->email )->first();
 
-        $user = User::where('email', $request->email)->first();
+        $userToken = $user->createToken('authToken')->accessToken;
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Login Success!',
-            'token'   => $user    
-        ]);
+        $user->api_token = $userToken;
+
+        $user->save();
 
         //if ($hashedPassword && Hash::check($password, $hashedPassword->password)) {
         // if (!$user || Hash::check($request->password, $user->password)==true) {
@@ -45,18 +44,20 @@ class LoginController extends Controller
         //     ]);
         // }
 
-        $userToken = $user->createToken('authToken')->accessToken;
+        // $userToken = $user->createToken('authToken')->accessToken;
 
-        $users = User::where(['email' => $request->email])->first();
+        // $users = User::where(['email' => $request->email])->first();
 
-        $users->api_token = $userToken;
+        // $users->api_token = $userToken;
 
-        $users->save();
+        // $users->save();
+        
+        $apiToken = User::select('api_token')->where('email', $request->email)->get();
 
         return response()->json([
             'success' => true,
             'message' => 'Login Success!',
-            'token'   => $userToken    
+            'token'   => $apiToken   
         ]);
     }
     

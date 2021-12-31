@@ -50,14 +50,22 @@
         data() {
             return {
                 post: {},
-                validation: []
+                validation: [],
+                loggedIn: localStorage.getItem('loggedIn'),
+                //state token
+                token: localStorage.getItem('token'),
             }
         },
         created() {
-            let uri = `http://localhost:8000/api/posts/${this.$route.params.id}`;
-            this.axios.get(uri).then((response) => {
-                this.post = response.data.data;
-            });
+            if (this.token != null) {
+                let uri = `http://localhost:8000/api/posts/${this.$route.params.id}`;
+                this.axios.get(uri).then((response) => {
+                    this.post = response.data.data;
+                });
+            }else {
+                return this.$router.push({ name: 'login' }) 
+            }
+
         },
         methods: {
             PostUpdate() {

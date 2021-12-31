@@ -55,8 +55,17 @@
         data() {
             return {
                 post: {},
-                validation: []
+                validation: [],
+                loggedIn: localStorage.getItem('loggedIn'),
+                //state token
+                token: localStorage.getItem('token'),
             }
+        },
+        created() {
+            if (this.token == null) {
+                return this.$router.push({ name: 'login' }) 
+            }
+
         },
         methods: {
             PostStore() {

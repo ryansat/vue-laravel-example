@@ -42,14 +42,23 @@
     export default {
         data() {
             return {
-                posts: []
+                posts: [],
+                loggedIn: localStorage.getItem('loggedIn'),
+                //state token
+                token: localStorage.getItem('token'),
             }
         },
         created() {
-            let uri = `http://localhost:8000/api/posts`;
-            this.axios.get(uri).then(response => {
-                this.posts = response.data.data;
-            });
+            // console.log(this.token)
+            if (this.token != null) {
+                let uri = `http://localhost:8000/api/posts`;
+                this.axios.get(uri).then(response => {
+                    this.posts = response.data.data;
+                });
+            }else {
+                return this.$router.push({ name: 'login' }) 
+            }
+            
         },
         methods: {
             PostDelete(id, index)

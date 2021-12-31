@@ -22,7 +22,8 @@ const routes = [
     {
         name: 'dashboard',
         path: '/',
-        component: IndexComponent
+        component: IndexComponent,
+        meta: { requiresAuth: true }
     },
     {
         name: 'create',

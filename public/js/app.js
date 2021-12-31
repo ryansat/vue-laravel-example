@@ -2255,7 +2255,12 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('http://localhost:8000/api/login', {
         email: email,
         password: password
-      }).then(function (response) {
+      }) // .then(
+      //     response => console.log(response.data.token[0].api_token)
+      // ).catch(
+      //     error => console.log(error)
+      // )
+      .then(function (response) {
         // if(response.data.success = true) {
         //     set token
         //     localStorage.setItem('token', response.data.token)
@@ -2265,7 +2270,9 @@ __webpack_require__.r(__webpack_exports__);
         //     })
         // }
         console.log(response.data.success);
-        localStorage.setItem('token', response.data.token); //redirect ke halaman dashboard
+        localStorage.setItem('token', response.data.token[0].api_token);
+        var token = localStorage.getItem('token');
+        console.log(response.data); //redirect ke halaman dashboard
 
         _this.$router.push({
           name: 'dashboard'
@@ -2483,8 +2490,18 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       post: {},
-      validation: []
+      validation: [],
+      loggedIn: localStorage.getItem('loggedIn'),
+      //state token
+      token: localStorage.getItem('token')
     };
+  },
+  created: function created() {
+    if (this.token == null) {
+      return this.$router.push({
+        name: 'login'
+      });
+    }
   },
   methods: {
     PostStore: function PostStore() {
@@ -2565,16 +2582,25 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       post: {},
-      validation: []
+      validation: [],
+      loggedIn: localStorage.getItem('loggedIn'),
+      //state token
+      token: localStorage.getItem('token')
     };
   },
   created: function created() {
     var _this = this;
 
-    var uri = "http://localhost:8000/api/posts/".concat(this.$route.params.id);
-    this.axios.get(uri).then(function (response) {
-      _this.post = response.data.data;
-    });
+    if (this.token != null) {
+      var uri = "http://localhost:8000/api/posts/".concat(this.$route.params.id);
+      this.axios.get(uri).then(function (response) {
+        _this.post = response.data.data;
+      });
+    } else {
+      return this.$router.push({
+        name: 'login'
+      });
+    }
   },
   methods: {
     PostUpdate: function PostUpdate() {
@@ -2648,16 +2674,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      posts: []
+      posts: [],
+      loggedIn: localStorage.getItem('loggedIn'),
+      //state token
+      token: localStorage.getItem('token')
     };
   },
   created: function created() {
     var _this = this;
 
-    var uri = "http://localhost:8000/api/posts";
-    this.axios.get(uri).then(function (response) {
-      _this.posts = response.data.data;
-    });
+    // console.log(this.token)
+    if (this.token != null) {
+      var uri = "http://localhost:8000/api/posts";
+      this.axios.get(uri).then(function (response) {
+        _this.posts = response.data.data;
+      });
+    } else {
+      return this.$router.push({
+        name: 'login'
+      });
+    }
   },
   methods: {
     PostDelete: function PostDelete(id, index) {
@@ -2713,7 +2749,10 @@ vue_dist_vue__WEBPACK_IMPORTED_MODULE_3___default().use(vue_axios__WEBPACK_IMPOR
 var routes = [{
   name: 'dashboard',
   path: '/',
-  component: _components_posts_Index_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+  component: _components_posts_Index_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+  meta: {
+    requiresAuth: true
+  }
 }, {
   name: 'create',
   path: '/create',

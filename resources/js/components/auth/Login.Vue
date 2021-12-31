@@ -80,6 +80,13 @@
                         email,
                         password,
                 })
+                // .then(
+                //     response => console.log(response.data.token[0].api_token)
+
+                // ).catch(
+                //     error => console.log(error)
+                // )
+                
                 .then(response => {
 
                     // if(response.data.success = true) {
@@ -95,8 +102,9 @@
                     // }
                     console.log(response.data.success)
 
-                    localStorage.setItem('token', response.data.token)
-
+                    localStorage.setItem('token', response.data.token[0].api_token)
+                    var token = localStorage.getItem('token')
+                    console.log(response.data)
                     //redirect ke halaman dashboard
                     this.$router.push({
                         name: 'dashboard'
