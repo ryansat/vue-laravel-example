@@ -2220,6 +2220,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // import { reactive, ref } from 'vue'
 // import { useRouter } from 'vue-router'
 
@@ -2227,13 +2241,18 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       post: {},
-      email: '',
-      password: '',
-      loginFailed: '',
+      email: "",
+      password: "",
+      loginFailed: "",
       validation: []
     };
   },
   methods: {
+    register: function register() {
+      this.$router.push({
+        name: "register"
+      });
+    },
     login: function login() {
       var _this = this;
 
@@ -2247,35 +2266,22 @@ __webpack_require__.r(__webpack_exports__);
       // //state validation
       var validation = []; // //state loginFailed
       // const loginFailed = ref(null)
-      //define variable 
+      //define variable
 
       var email = this.email;
       var password = this.password; //send server with axios
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post('http://localhost:8000/api/login', {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://localhost:8000/api/login", {
         email: email,
         password: password
-      }) // .then(
-      //     response => console.log(response.data.token[0].api_token)
-      // ).catch(
-      //     error => console.log(error)
-      // )
-      .then(function (response) {
-        // if(response.data.success = true) {
-        //     set token
-        //     localStorage.setItem('token', response.data.token)
-        //     //redirect ke halaman dashboard
-        //     return router.push({
-        //         name: 'posts'
-        //     })
-        // }
+      }).then(function (response) {
         console.log(response.data.success);
-        localStorage.setItem('token', response.data.token[0].api_token);
-        var token = localStorage.getItem('token');
+        localStorage.setItem("token", response.data.token[0].api_token);
+        var token = localStorage.getItem("token");
         console.log(response.data); //redirect ke halaman dashboard
 
         _this.$router.push({
-          name: 'dashboard'
+          name: "dashboard"
         }); //set state loggedIn to true
 
 
@@ -2365,59 +2371,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-// import { reactive, ref } from 'vue'
-// import { useRouter } from 'vue-router'
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      validation: []
+      post: {},
+      email: "",
+      password: "",
+      validation: [],
+      name: "",
+      password_confirmation: ""
     };
   },
-  setup: function setup() {
-    //inisialisasi vue router on Composition API
-    var router = useRouter(); //state user
+  methods: {
+    register: function register() {
+      var _this = this;
 
-    var user = reactive({
-      name: '',
-      email: '',
-      password: '',
-      password_confirmation: ''
-    }); //state validation
+      //define variable
+      var name = this.name;
+      var email = this.email;
+      var password = this.password;
+      var password_confirmation = this.password_confirmation;
+      console.log(name); //send server with axios
 
-    var validation = ref([]); //method register
-
-    function register() {
-      //define variable 
-      var name = user.name;
-      var email = user.email;
-      var password = user.password;
-      var password_confirmation = user.password_confirmation; //send server with axios
-
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post('http://localhost:8000/api/register', {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://localhost:8000/api/register", {
         name: name,
         email: email,
         password: password,
         password_confirmation: password_confirmation
-      }).then(function () {
+      }).then(function (response) {
         //redirect ke halaman login
-        return router.push({
-          name: 'login'
+        //console.log("Response : " + response.data.email);
+        _this.$router.push({
+          name: "login"
         });
       })["catch"](function (error) {
         //set validation dari error response
-        validation.value = error.response.data;
+        //   validation.value = error.response.data;
+        console.log(error.data);
       });
     }
-
-    return {
-      user: user,
-      // <-- state user
-      validation: validation,
-      // <-- state validation 
-      register: register // <-- method register
-
-    };
   }
 });
 
@@ -20724,9 +20724,7 @@ var render = function () {
       _c("div", { staticClass: "col-md-4" }, [
         _vm.loginFailed
           ? _c("div", { staticClass: "alert alert-danger" }, [
-              _vm._v(
-                "\n                    Email atau Password Anda salah.\n                "
-              ),
+              _vm._v("\n        Email atau Password Anda salah.\n      "),
             ])
           : _vm._e(),
         _vm._v(" "),
@@ -20776,9 +20774,9 @@ var render = function () {
                 _vm.validation.email
                   ? _c("div", { staticClass: "mt-2 alert alert-danger" }, [
                       _vm._v(
-                        "\n                            " +
+                        "\n              " +
                           _vm._s(_vm.validation.email[0]) +
-                          "\n                        "
+                          "\n            "
                       ),
                     ])
                   : _vm._e(),
@@ -20812,9 +20810,9 @@ var render = function () {
                 _vm.validation.password
                   ? _c("div", { staticClass: "mt-2 alert alert-danger" }, [
                       _vm._v(
-                        "\n                            " +
+                        "\n              " +
                           _vm._s(_vm.validation.password[0]) +
-                          "\n                        "
+                          "\n            "
                       ),
                     ])
                   : _vm._e(),
@@ -20825,7 +20823,17 @@ var render = function () {
                     staticClass: "btn btn-primary btn-block",
                     attrs: { type: "submit" },
                   },
-                  [_vm._v("LOGIN")]
+                  [_vm._v("\n              LOGIN\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary btn-block",
+                    attrs: { type: "button" },
+                    on: { click: _vm.register },
+                  },
+                  [_vm._v("\n              REGISTER\n            ")]
                 ),
               ]
             ),
@@ -20888,33 +20896,23 @@ var render = function () {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.user.name,
-                            expression: "user.name",
+                            value: _vm.name,
+                            expression: "name",
                           },
                         ],
                         staticClass: "form-control",
                         attrs: { type: "text", placeholder: "Full Name" },
-                        domProps: { value: _vm.user.name },
+                        domProps: { value: _vm.name },
                         on: {
                           input: function ($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(_vm.user, "name", $event.target.value)
+                            _vm.name = $event.target.value
                           },
                         },
                       }),
                     ]),
-                    _vm._v(" "),
-                    _vm.validation.name
-                      ? _c("div", { staticClass: "mt-2 alert alert-danger" }, [
-                          _vm._v(
-                            "\n                                    " +
-                              _vm._s(_vm.validation.name[0]) +
-                              "\n                                "
-                          ),
-                        ])
-                      : _vm._e(),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-6" }, [
@@ -20926,33 +20924,23 @@ var render = function () {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.user.email,
-                            expression: "user.email",
+                            value: _vm.email,
+                            expression: "email",
                           },
                         ],
                         staticClass: "form-control",
                         attrs: { type: "email", placeholder: "Email Address" },
-                        domProps: { value: _vm.user.email },
+                        domProps: { value: _vm.email },
                         on: {
                           input: function ($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(_vm.user, "email", $event.target.value)
+                            _vm.email = $event.target.value
                           },
                         },
                       }),
                     ]),
-                    _vm._v(" "),
-                    _vm.validation.email
-                      ? _c("div", { staticClass: "mt-2 alert alert-danger" }, [
-                          _vm._v(
-                            "\n                                    " +
-                              _vm._s(_vm.validation.email[0]) +
-                              "\n                                "
-                          ),
-                        ])
-                      : _vm._e(),
                   ]),
                 ]),
                 _vm._v(" "),
@@ -20966,33 +20954,23 @@ var render = function () {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.user.password,
-                            expression: "user.password",
+                            value: _vm.password,
+                            expression: "password",
                           },
                         ],
                         staticClass: "form-control",
                         attrs: { type: "password", placeholder: "Password" },
-                        domProps: { value: _vm.user.password },
+                        domProps: { value: _vm.password },
                         on: {
                           input: function ($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(_vm.user, "password", $event.target.value)
+                            _vm.password = $event.target.value
                           },
                         },
                       }),
                     ]),
-                    _vm._v(" "),
-                    _vm.validation.password
-                      ? _c("div", { staticClass: "mt-2 alert alert-danger" }, [
-                          _vm._v(
-                            "\n                                    " +
-                              _vm._s(_vm.validation.password[0]) +
-                              "\n                                "
-                          ),
-                        ])
-                      : _vm._e(),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-6" }, [
@@ -21004,8 +20982,8 @@ var render = function () {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.user.password_confirmation,
-                            expression: "user.password_confirmation",
+                            value: _vm.password_confirmation,
+                            expression: "password_confirmation",
                           },
                         ],
                         staticClass: "form-control",
@@ -21013,17 +20991,13 @@ var render = function () {
                           type: "password",
                           placeholder: "Konfirmasi Password",
                         },
-                        domProps: { value: _vm.user.password_confirmation },
+                        domProps: { value: _vm.password_confirmation },
                         on: {
                           input: function ($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(
-                              _vm.user,
-                              "password_confirmation",
-                              $event.target.value
-                            )
+                            _vm.password_confirmation = $event.target.value
                           },
                         },
                       }),
@@ -21037,7 +21011,7 @@ var render = function () {
                     staticClass: "btn btn-primary btn-block",
                     attrs: { type: "submit" },
                   },
-                  [_vm._v("REGISTER")]
+                  [_vm._v("\n              REGISTER\n            ")]
                 ),
               ]
             ),
