@@ -2482,10 +2482,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -21067,7 +21063,7 @@ var render = function () {
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "card card-default" }, [
-          _c("div", { staticClass: "card-header" }, [_vm._v("TAMBAH POST")]),
+          _c("div", { staticClass: "card-header" }, [_vm._v("TAMBAH BARANG")]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c(
@@ -21082,7 +21078,7 @@ var render = function () {
               },
               [
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("TITLE")]),
+                  _c("label", [_vm._v("NAMA")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -21127,7 +21123,7 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("KONTEN")]),
+                  _c("label", [_vm._v("JENIS")]),
                   _vm._v(" "),
                   _c("textarea", {
                     directives: [
@@ -21226,7 +21222,7 @@ var render = function () {
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "card card-default" }, [
-          _c("div", { staticClass: "card-header" }, [_vm._v("EDIT POST")]),
+          _c("div", { staticClass: "card-header" }, [_vm._v("EDIT BARANG")]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _c(
@@ -21241,7 +21237,7 @@ var render = function () {
               },
               [
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("TITLE")]),
+                  _c("label", [_vm._v("NAMA")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -21286,7 +21282,7 @@ var render = function () {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("KONTEN")]),
+                  _c("label", [_vm._v("JENIS")]),
                   _vm._v(" "),
                   _c("textarea", {
                     directives: [
@@ -21385,7 +21381,7 @@ var render = function () {
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "card card-default" }, [
-          _c("div", { staticClass: "card-header" }, [_vm._v("POSTS")]),
+          _c("div", { staticClass: "card-header" }, [_vm._v("BARANG")]),
           _vm._v(" "),
           _c(
             "div",
@@ -21397,7 +21393,7 @@ var render = function () {
                   staticClass: "btn btn-md btn-success",
                   attrs: { to: { name: "create" } },
                 },
-                [_vm._v("TAMBAH POST")]
+                [_vm._v("TAMBAH BARANG")]
               ),
               _vm._v(" "),
               _c(
@@ -21485,9 +21481,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("TITLE")]),
+        _c("th", [_vm._v("NAMA")]),
         _vm._v(" "),
-        _c("th", [_vm._v("KONTEN")]),
+        _c("th", [_vm._v("JENIS")]),
         _vm._v(" "),
         _c("th", [_vm._v("AKSI")]),
       ]),

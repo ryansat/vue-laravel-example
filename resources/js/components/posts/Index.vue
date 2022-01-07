@@ -3,17 +3,17 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card card-default">
-                    <div class="card-header">POSTS</div>
+                    <div class="card-header">BARANG</div>
                     <div class="card-body">
-                        <router-link :to="{ name: 'create' }" class="btn btn-md btn-success">TAMBAH POST</router-link>
+                        <router-link :to="{ name: 'create' }" class="btn btn-md btn-success">TAMBAH BARANG</router-link>
                         <button @click.prevent="logout" class="btn btn-sm btn-danger">LOGOUT</button>
 
                         <div class="table-responsive mt-2">
                             <table class="table table-hover table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>TITLE</th>
-                                    <th>KONTEN</th>
+                                    <th>NAMA</th>
+                                    <th>JENIS</th>
                                     <th>AKSI</th>
                                 </tr>
                                 </thead>

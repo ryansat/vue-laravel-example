@@ -3,14 +3,14 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card card-default">
-                    <div class="card-header">EDIT POST</div>
+                    <div class="card-header">EDIT BARANG</div>
 
                     <div class="card-body">
 
                         <form @submit.prevent="PostUpdate">
 
                             <div class="form-group">
-                                <label>TITLE</label>
+                                <label>NAMA</label>
                                 <input type="text" class="form-control" v-model="post.title"
                                        placeholder="Masukkan Title">
                                 <div v-if="validation.title">
@@ -20,7 +20,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>KONTEN</label>
+                                <label>JENIS</label>
                                 <textarea class="form-control" v-model="post.content" rows="5"
                                           placeholder="Masukkan Konten"></textarea>
                                 <div v-if="validation.content">
