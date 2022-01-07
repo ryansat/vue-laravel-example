@@ -2670,7 +2670,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2703,6 +2702,26 @@ __webpack_require__.r(__webpack_exports__);
         _this2.posts.splice(index, 1);
       })["catch"](function (error) {
         alert('system error!');
+      });
+    },
+    logout: function logout() {
+      var _this3 = this;
+
+      var token = localStorage.getItem('token');
+      axios.defaults.headers.common.Authorization = "Bearer ".concat(token);
+      axios.post('http://localhost:8000/api/logout').then(function (response) {
+        console.log(response.status);
+
+        if (response.status == 200) {
+          //remove localStorage
+          localStorage.removeItem('token'); //redirect ke halaman login
+
+          _this3.$router.push({
+            name: 'login'
+          });
+        }
+      })["catch"](function (error) {
+        console.log(error.response.data);
       });
     }
   }
@@ -21379,6 +21398,20 @@ var render = function () {
                   attrs: { to: { name: "create" } },
                 },
                 [_vm._v("TAMBAH POST")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-sm btn-danger",
+                  on: {
+                    click: function ($event) {
+                      $event.preventDefault()
+                      return _vm.logout.apply(null, arguments)
+                    },
+                  },
+                },
+                [_vm._v("LOGOUT")]
               ),
               _vm._v(" "),
               _c("div", { staticClass: "table-responsive mt-2" }, [

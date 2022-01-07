@@ -4,9 +4,9 @@
             <div class="col-md-12">
                 <div class="card card-default">
                     <div class="card-header">POSTS</div>
-
                     <div class="card-body">
                         <router-link :to="{ name: 'create' }" class="btn btn-md btn-success">TAMBAH POST</router-link>
+                        <button @click.prevent="logout" class="btn btn-sm btn-danger">LOGOUT</button>
 
                         <div class="table-responsive mt-2">
                             <table class="table table-hover table-bordered">
@@ -36,7 +36,6 @@
         </div>
     </div>
 </template>
-
 
 <script>
     export default {
@@ -68,6 +67,24 @@
                         this.posts.splice(index, 1);
                     }).catch(error => {
                     alert('system error!');
+                });
+            },
+            logout(){    
+                let token = localStorage.getItem('token')
+                axios.defaults.headers.common.Authorization = `Bearer ${token}`
+                axios.post('http://localhost:8000/api/logout')
+                    .then(response => {
+                    console.log(response.status)
+                        if(response.status == 200) {
+                            //remove localStorage
+                            localStorage.removeItem('token')
+                            //redirect ke halaman login
+                            this.$router.push({
+                                name: 'login'
+                            })
+                        }
+                    }).catch(error => {
+                    console.log(error.response.data)
                 });
             }
         }
