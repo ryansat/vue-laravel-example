@@ -12,9 +12,9 @@ Vue.use(VueRouter)
 
 Vue.use(VueAxios, axios);
 
-import IndexComponent from './components/posts/Index.vue';
-import CreateComponent from './components/posts/Create.vue';
-import EditComponent from './components/posts/Edit.vue';
+import IndexComponent from './components/item/Index.vue';
+import CreateComponent from './components/item/Create.vue';
+import EditComponent from './components/item/Edit.vue';
 import LoginComponent from './components/auth/Login.vue';
 import RegisterComponent from './components/auth/Register.vue';
 

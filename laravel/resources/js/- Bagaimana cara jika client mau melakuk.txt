@@ -1,0 +1,4 @@
+- Bagaimana cara jika client mau melakukan retur? Step yang dilakukan secara bisnis bgmn dan cara aplikasikan ke sistem bagaimana?
+- Yang biasa melakukan approval PR di suatu perusahaan itu siapa?
+- Tunjukkan ke kami cara melihat Vendor yang kita paling sering beli barangnya di Februari 2021
+- Klik dimana cara untuk melihat pie chart, Tunjukkan Pie chart yang menunjukkan total pembelian produk paling banyak dari segi harga, dan dari vendor mana di tahun 2021

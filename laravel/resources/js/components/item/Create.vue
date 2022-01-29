@@ -12,7 +12,7 @@
                             <div class="form-group">
                                 <label>NAMA</label>
                                 <input type="text" class="form-control" v-model="post.title"
-                                       placeholder="Masukkan Title">
+                                       placeholder="Masukkan Nama Barang">
                                 <div v-if="validation.title">
                                     <div class="alert alert-danger mt-1" role="alert">
                                         {{ validation.title[0] }}
@@ -24,7 +24,7 @@
                             <div class="form-group">
                                 <label>JENIS</label>
                                 <textarea class="form-control" v-model="post.content" rows="5"
-                                          placeholder="Masukkan Konten"></textarea>
+                                          placeholder="Masukkan Jenis Barang"></textarea>
                                 <div v-if="validation.content">
                                     <div class="alert alert-danger mt-1" role="alert">
                                         {{ validation.content[0] }}
